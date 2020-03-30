@@ -63,6 +63,6 @@ willit --num-pages=512
 willit type="mdx" --level=1
 ```
 
-There are two types currently, `json` or `mdx`. `json` is the default, `mdx` will generate temporary JSON files and then convert them to MDX in an `articles` directory.
+There are three types currently, `json`, `mdx`, or `md`. `json` is the default and will generate JSON files into a `data` directory. `mdx` and `md` will generate temporary JSON files and then convert them to MDX in a `src/articles` directory.
 
 <!-- commandsstop -->

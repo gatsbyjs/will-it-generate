@@ -4,6 +4,7 @@ const asciiArt = require(`ascii-text-generator`)
 
 const { generateArticlesAndWriteToDisk } = require(`./utils/write`)
 const { generateAndWriteMDXFiles } = require(`./utils/generate-mdx`)
+const { generateAndWriteMDFiles } = require(`./utils/generate-md`)
 
 class WillitCommand extends Command {
   async run() {
@@ -18,9 +19,13 @@ class WillitCommand extends Command {
     const numPages = flags[`num-pages`]
 
     const isMDX = fileType === `mdx`
+    const isMD = fileType === `md`
+
     const tempDir = `.temp---will-it-gen-json`
-    const directoryRoot = isMDX ? tempDir : `data`
+    const directoryRoot = isMDX || isMD ? tempDir : `data`
+
     const articleCount = numPages || Math.pow(2, level) * (512 / 2)
+
     const name = `willitbuild-${level < 10 ? `0` : ``}${level}`
 
     // generates JSON
@@ -37,7 +42,14 @@ class WillitCommand extends Command {
         name,
         directoryRoot,
       })
+    } else if (isMD) {
+      await generateAndWriteMDFiles({
+        name,
+        directoryRoot,
+      })
+    }
 
+    if (isMDX || isMD) {
       // delete the .temp directory
       await fs.remove(`./${tempDir}`)
     }
