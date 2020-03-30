@@ -37,12 +37,13 @@ class WillitCommand extends Command {
     })
 
     if (isMDX) {
-      // converts the .temp json into mdx and places it in src/articles
+      // converts the .temp json to mdx and places it in src/articles
       await generateAndWriteMDXFiles({
         name,
         directoryRoot,
       })
     } else if (isMD) {
+      // converts the .temp json to md and places it in src/articles
       await generateAndWriteMDFiles({
         name,
         directoryRoot,
