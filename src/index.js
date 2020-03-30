@@ -57,7 +57,7 @@ class WillitCommand extends Command {
   }
 }
 
-WillitCommand.description = `Generates either JSON or MDX files full of dummy data`
+WillitCommand.description = `Generates either JSON, MD or MDX files full of dummy data`
 
 WillitCommand.flags = {
   // add --version flag to show CLI version
