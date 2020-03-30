@@ -15,11 +15,12 @@ class WillitCommand extends Command {
     const { flags } = this.parse(WillitCommand)
     const fileType = flags.type || "json"
     const level = flags.level || 1
+    const numPages = flags[`num-pages`]
 
     const isMDX = fileType === `mdx`
     const tempDir = `.temp---will-it-gen-json`
     const directoryRoot = isMDX ? tempDir : `data`
-    const articleCount = Math.pow(2, level) * (512 / 2)
+    const articleCount = numPages || Math.pow(2, level) * (512 / 2)
     const name = `willitbuild-${level < 10 ? `0` : ``}${level}`
 
     // generates JSON
@@ -54,6 +55,10 @@ WillitCommand.flags = {
     char: "l",
     description:
       "The amount of articles to generate. Each level doubles starting from 512 at level 1. The default is 1.",
+  }),
+  "num-pages": flags.integer({
+    char: "n",
+    description: "The amount of pages to generate.",
   }),
   type: flags.string({
     char: "t",
