@@ -6,7 +6,7 @@
   "bin": {
     "willit": "./bin/run"
   },
-  "bugs": "https://github.com/gatsbyjs/gatsby/issues",
+  "bugs": "https://github.com/gatsbyjs/will-it-generate/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -35,7 +35,7 @@
     "/bin",
     "/src"
   ],
-  "homepage": "https://github.com/gatsbyjs/gatsby/tree/master/benchmarks/_generate/readme.md",
+  "homepage": "https://github.com/gatsbyjs/will-it-generate",
   "keywords": [
     "oclif"
   ],
