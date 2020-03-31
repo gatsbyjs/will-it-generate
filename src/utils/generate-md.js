@@ -1,51 +1,11 @@
 const fs = require(`fs-extra`)
 const kebabCase = require(`lodash.kebabcase`)
-const download = require(`image-downloader`)
 const path = require(`path`)
-const { dd } = require(`dumper.js`)
 const ProgressBar = require("progress")
-const retry = require(`async-retry`)
-const Url = require(`url`)
 const chunk = require(`lodash.chunk`)
 const chalk = require(`chalk`)
 
-const fetchAndWriteImage = async ({ url, directory }) => {
-  const fileName = path.parse(Url.parse(url).pathname).base
-
-  if (await fs.exists(`${directory}/${fileName}`)) {
-    console.log(`${fileName} exists`)
-    return fileName
-  }
-
-  try {
-    const fileName = await retry(
-      async () => {
-        const { filename: fileDirectory } = await download.image({
-          url,
-          dest: directory,
-        })
-
-        const fileName = path.parse(fileDirectory).base
-
-        return fileName
-      },
-      {
-        retries: 5,
-        onRetry: (error, attemptNumber) => {
-          if (attemptNumber === 5) {
-            console.log(directory)
-            console.log(url)
-            console.error(error)
-          }
-        },
-      }
-    )
-
-    return fileName
-  } catch (e) {
-    dd(e)
-  }
-}
+const fetchAndWriteImage = require(`./fetch-and-write-image`)
 
 const generateMD = async ({ articleNumber, title, imageFileName, content }) => {
   return `---

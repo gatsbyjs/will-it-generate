@@ -22,13 +22,12 @@ Generates JSON or MDX files, with a datashape resembling a typical article, into
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g willit
 $ willit COMMAND
 running command...
 $ willit (-v|--version|version)
-willit/0.0.2 darwin-x64 node-v10.16.3
+willit/0.0.3 darwin-x64 node-v10.16.3
 $ willit --help [COMMAND]
 USAGE
   $ willit COMMAND
