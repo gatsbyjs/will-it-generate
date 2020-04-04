@@ -1,7 +1,7 @@
 {
   "name": "willit",
   "description": "Gatsby's Will it Build data generator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Tyler Barnes @TylerBarnes",
   "bin": {
     "willit": "./bin/run"
