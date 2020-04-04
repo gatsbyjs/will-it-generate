@@ -40,7 +40,7 @@ const fetchAndWriteImage = async ({ url, directory }) => {
           console.log(`trying ${newUrl} instead`)
           imageUrl = newUrl
 
-          if (attemptNumber === 5) {
+          if (attemptNumber === 1000) {
             console.log(directory)
             console.log(url)
             console.error(error)
