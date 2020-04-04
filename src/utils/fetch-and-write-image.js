@@ -30,7 +30,8 @@ const fetchAndWriteImage = async ({ url, directory }) => {
         return fileName
       },
       {
-        retries: 5,
+        retries: 1000,
+        factor: 1,
         onRetry: (error, attemptNumber) => {
           // try grabbing a new image from our image dataset
           const { url: newUrl } = sampleSize(fullImageDataset, 1)[0]
