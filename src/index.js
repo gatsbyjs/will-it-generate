@@ -17,6 +17,7 @@ class WillitCommand extends Command {
     const fileType = flags.type || "json"
     const level = flags.level || 1
     const numPages = flags[`num-pages`]
+    const usePreGeneratedData = !!flags[`use-pregenerated-data`]
 
     const isMDX = fileType === `mdx`
     const isMD = fileType === `md`
@@ -28,13 +29,19 @@ class WillitCommand extends Command {
 
     const name = `willitbuild-${level < 10 ? `0` : ``}${level}`
 
-    // generates JSON
-    await generateArticlesAndWriteToDisk({
-      name,
-      articleCount,
-      fileType,
-      directoryRoot,
-    })
+    if (usePreGeneratedData) {
+      // use articleCount to fetch articles from GH
+      // if no file exists for the current level, throw an error / exit
+      // if file exists, write it to disk
+    } else {
+      // generates JSON
+      await generateArticlesAndWriteToDisk({
+        name,
+        articleCount,
+        fileType,
+        directoryRoot,
+      })
+    }
 
     if (isMDX) {
       // converts the .temp json to mdx and places it in src/articles
@@ -76,6 +83,10 @@ WillitCommand.flags = {
   type: flags.string({
     char: "t",
     description: "The file type to output. either 'json' or 'mdx'",
+  }),
+  "use-pregenerated-data": flags.string({
+    char: "p",
+    description: "Wether or not to use pre-generated data",
   }),
 }
 

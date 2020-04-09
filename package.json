@@ -21,6 +21,7 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.samplesize": "^4.2.0",
     "progress": "^2.0.3",
+    "readdirp": "^3.4.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
