@@ -31,5 +31,14 @@ const chunk = require(`lodash.chunk`)
   }
 
   // write back to json in 2 files. extending the length of the url's makes the image dataset too large for GH
-  await fs.writeJson(`./open-image-dataset-v6/json/0.json`, imageSet)
+  const chunkedFileContents = chunk(imageSet, imageSet.length / 2 + 1)
+
+  let counter = 0
+  for await (const fileContentsChunk of chunkedFileContents) {
+    await fs.writeJson(
+      `./open-image-dataset-v6/json/0-${counter}.json`,
+      fileContentsChunk
+    )
+    counter++
+  }
 })()
