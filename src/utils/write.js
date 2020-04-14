@@ -39,8 +39,6 @@ exports.generateArticlesAndWriteToDisk = async ({
   )
 
   for await (const index of fileIndexes) {
-    // activity.setStatus(`writing ${index + 1}/${numberOfFiles} json files`)
-
     const data = await generateArticles({
       imageDataSet,
       chunksPerFile,
