@@ -1,10 +1,14 @@
 const { Command, flags } = require(`@oclif/command`)
 const fs = require(`fs-extra`)
 const asciiArt = require(`ascii-text-generator`)
-
+const { dd } = require(`dumper.js`)
 const { generateArticlesAndWriteToDisk } = require(`./utils/write`)
 const { generateAndWriteMDXFiles } = require(`./utils/generate-mdx`)
 const { generateAndWriteMDFiles } = require(`./utils/generate-md`)
+
+const {
+  fetchPregeneratedDataAndWriteToDisk,
+} = require(`./utils/fetch-pregenerated-data`)
 
 class WillitCommand extends Command {
   async run() {
@@ -15,7 +19,6 @@ class WillitCommand extends Command {
 
     const { flags } = this.parse(WillitCommand)
     const fileType = flags.type || "json"
-    const level = flags.level || 1
     const numPages = flags[`num-pages`]
     const usePreGeneratedData = !!flags[`use-pregenerated-data`]
 
@@ -25,14 +28,19 @@ class WillitCommand extends Command {
     const tempDir = `.temp---will-it-gen-json`
     const directoryRoot = isMDX || isMD ? tempDir : `data`
 
+    const numPagesToLevel = Math.log(numPages) / Math.log(2) - 8
+    const level = flags.level || numPagesToLevel
     const articleCount = numPages || Math.pow(2, level) * (512 / 2)
 
     const name = `willitbuild-${level < 10 ? `0` : ``}${level}`
 
     if (usePreGeneratedData) {
-      // use articleCount to fetch articles from GH
-      // if no file exists for the current level, throw an error / exit
-      // if file exists, write it to disk
+      await fetchPregeneratedDataAndWriteToDisk({
+        name,
+        articleCount,
+        fileType,
+        directoryRoot,
+      })
     } else {
       // generates JSON
       await generateArticlesAndWriteToDisk({
