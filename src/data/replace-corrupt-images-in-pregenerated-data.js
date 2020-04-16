@@ -37,6 +37,8 @@ const fileQueue = new Queue({ concurrency: 50 })
             image,
           }
         }
+
+        return article
       })
 
       if (hadUpdates) {
