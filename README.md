@@ -69,7 +69,7 @@ There are three types currently, `json`, `mdx`, or `md`. `json` is the default a
 ## use-pregenerated-data
 
 ```sh-session
-willit --use-pregenerated-data=true --level=1 --type="mdx"
+willit --use-pregenerated-data --level=1 --type="mdx"
 ```
 
 This fetches pre-generated data from the repo instead of generating on the fly
