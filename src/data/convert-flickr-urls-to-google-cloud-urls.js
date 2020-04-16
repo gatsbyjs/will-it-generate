@@ -1,9 +1,7 @@
 /**
  * Assuming that all referenced images are uploaded to Google Cloud (all current images are), this script converts the original image URL's to Cloud URL's
  */
-const PQueue = require(`p-queue`)
 const fs = require(`fs-extra`)
-const { dd } = require(`dumper.js`)
 const chunk = require(`lodash.chunk`)
 
 ;(async () => {
