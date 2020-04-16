@@ -20,7 +20,7 @@ class WillitCommand extends Command {
     const { flags } = this.parse(WillitCommand)
     const fileType = flags.type || "json"
     const numPages = flags[`num-pages`]
-    const usePreGeneratedData = !!flags[`use-pregenerated-data`]
+    const usePreGeneratedData = flags[`use-pregenerated-data`]
 
     const isMDX = fileType === `mdx`
     const isMD = fileType === `md`
@@ -92,7 +92,7 @@ WillitCommand.flags = {
     char: "t",
     description: "The file type to output. either 'json' or 'mdx'",
   }),
-  "use-pregenerated-data": flags.string({
+  "use-pregenerated-data": flags.boolean({
     char: "p",
     description: "Wether or not to use pre-generated data",
   }),
