@@ -72,6 +72,6 @@ There are three types currently, `json`, `mdx`, or `md`. `json` is the default a
 willit --use-pregenerated-data --level=1 --type="mdx"
 ```
 
-This fetches pre-generated data from the repo instead of generating on the fly
+This fetches pre-generated data from the repo instead of generating on the fly. num-pages works if there's a corresponding pregenerated data-set for the number set. See ./src/data/articles/ for available pregenerated datasets
 
 <!-- commandsstop -->
