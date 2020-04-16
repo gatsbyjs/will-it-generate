@@ -1,7 +1,7 @@
 {
   "name": "willit",
   "description": "Gatsby's Will it Build data generator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Tyler Barnes @TylerBarnes",
   "bin": {
     "willit": "./bin/run"
@@ -20,6 +20,7 @@
     "lodash.chunk": "^4.2.0",
     "lodash.kebabcase": "^4.1.1",
     "lodash.samplesize": "^4.2.0",
+    "node-fetch": "^2.6.0",
     "progress": "^2.0.3",
     "readdirp": "^3.4.0",
     "url": "^0.11.0"

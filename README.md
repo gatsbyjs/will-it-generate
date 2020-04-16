@@ -17,11 +17,13 @@ Generates JSON or MDX files, with a datashape resembling a typical article, into
   - [level](#level)
   - [num-pages](#num-pages)
   - [type](#type)
+  - [use-pregenerated-data](#use-pregenerated-data)
     <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g willit
 $ willit COMMAND
@@ -63,5 +65,13 @@ willit type="mdx" --level=1
 ```
 
 There are three types currently, `json`, `mdx`, or `md`. `json` is the default and will generate JSON files into a `data` directory. `mdx` and `md` will generate temporary JSON files and then convert them to MDX in a `src/articles` directory.
+
+## use-pregenerated-data
+
+```sh-session
+willit --use-pregenerated-data=true --level=1 --type="mdx"
+```
+
+This fetches pre-generated data from the repo instead of generating on the fly
 
 <!-- commandsstop -->

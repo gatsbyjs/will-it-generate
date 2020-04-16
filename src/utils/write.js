@@ -4,9 +4,9 @@ const ProgressBar = require("progress")
 const chalk = require(`chalk`)
 
 const { generateArticles } = require(`./generate`)
-const fullImageDataset = require(`../data/open-image-dataset-v6/json/0.json`)
+const fullImageDataset = require(`./get-image-dataset`)
 
-const arrayOfAscendingNumbers = times =>
+const arrayOfAscendingNumbers = (times) =>
   Array.from(new Array(times), (_, index) => index)
 
 exports.generateArticlesAndWriteToDisk = async ({
@@ -38,9 +38,7 @@ exports.generateArticlesAndWriteToDisk = async ({
     }
   )
 
-  for (const index of fileIndexes) {
-    // activity.setStatus(`writing ${index + 1}/${numberOfFiles} json files`)
-
+  for await (const index of fileIndexes) {
     const data = await generateArticles({
       imageDataSet,
       chunksPerFile,
@@ -51,8 +49,8 @@ exports.generateArticlesAndWriteToDisk = async ({
 
     const filePath = `${directoryPath}/${index}.json`
 
-    fs.ensureFileSync(filePath)
-    fs.writeJSONSync(filePath, data)
+    await fs.ensureFile(filePath)
+    await fs.writeJSON(filePath, data)
   }
 
   fs.writeFileSync(`${directoryPath}/NUM_FILES`, fileIndexes.length)

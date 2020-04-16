@@ -5,8 +5,7 @@ const { dd } = require(`dumper.js`)
 const retry = require(`async-retry`)
 const Url = require(`url`)
 const sampleSize = require(`lodash.samplesize`)
-
-const fullImageDataset = require(`../data/open-image-dataset-v6/json/0.json`)
+const fullImageDataset = require(`./get-image-dataset`)
 
 const fetchAndWriteImage = async ({ url, directory }) => {
   const fileName = path.parse(Url.parse(url).pathname).base
