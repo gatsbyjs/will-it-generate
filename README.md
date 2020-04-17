@@ -29,7 +29,7 @@ $ npm install -g willit
 $ willit COMMAND
 running command...
 $ willit (-v|--version|version)
-willit/0.0.7 darwin-x64 node-v10.16.3
+willit/1.0.0 darwin-x64 node-v12.13.1
 $ willit --help [COMMAND]
 USAGE
   $ willit COMMAND
