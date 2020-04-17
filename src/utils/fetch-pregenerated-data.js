@@ -15,7 +15,9 @@ exports.fetchPregeneratedDataAndWriteToDisk = async ({
   const numFilesResponse = await fetch(numFilesUrl)
 
   if (numFilesResponse.status === 404) {
-    throw new Error(`No pregenerated data found for ${articleCount} articles`)
+    throw new Error(
+      `No pregenerated data found for ${articleCount} articles at ${numFilesUrl}`
+    )
   }
 
   if (numFilesResponse.status !== 200) {
